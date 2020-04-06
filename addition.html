@@ -1,0 +1,88 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/redux/4.0.5/redux.min.js">
+    </script>
+
+    <script>
+       
+        function Add() {
+            return {
+                type: "ADD"
+            }
+        }
+
+
+        function Minus() {
+            return {
+                type: "MINUS"
+            }
+        }
+
+          function Times() {
+                return {
+                    type: "Times"
+                }
+            }
+
+        let initialState = {
+            count: 0
+        }
+
+        function reducer(state, action) {
+            if (state === undefined) {
+                state = initialState
+            }
+
+            if (action.type === "ADD") {
+
+                return {
+                       ...state, 
+                    count: state.count + 1
+                }
+            }
+            if (action.type === "MINUS") {
+
+                return {
+                  ...state, 
+                    count: state.count - 1
+                }
+            }
+
+            if (action.type === "Times") {
+
+                return {
+                    ...state, 
+                    count: state.count * 5
+                }
+            }
+
+        }
+
+        let store = Redux.createStore(reducer);
+        store.subscribe(showState);
+
+        function showState() {
+            console.log(store.getState())
+        }
+
+        store.dispatch(Add());
+        store.dispatch(Add());
+        store.dispatch(Times());
+        store.dispatch(Times());
+        store.dispatch(Minus());
+        store.dispatch(Minus());
+        store.dispatch(Minus());
+        store.dispatch(Minus());
+    </script>
+</body>
+
+</html>
